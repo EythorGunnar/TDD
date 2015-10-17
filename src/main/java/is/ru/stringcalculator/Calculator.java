@@ -7,14 +7,28 @@ public class Calculator {
 			return 0;
 		}
 		else if (text.contains(",")) {
-			String [] allTheNumbers = text.split(",");
-			int sum = 0;
-			for (int x = 0; x < allTheNumbers.length; x++) {
-				sum += Integer.parseInt(allTheNumbers[x]);
-			}
-			return sum;
+			return total(text);
 		}
-		else;
-			return Integer.parseInt(text);
+		else; {
+			try {
+				return toInt(text);
+			} 
+			catch (Exception e) {
+				return 0;
+			}
+		}
 	}
+
+	private static int total(String input){
+		String [] allTheNumbers = input.split(",");
+		int sum = 0;
+		for (int x = 0; x < allTheNumbers.length; x++) {
+			sum += toInt(allTheNumbers[x]);
+		}
+		return sum;
+	}
+
+	private static int toInt(String input){
+		return Integer.parseInt(input);
+	} 
 }
