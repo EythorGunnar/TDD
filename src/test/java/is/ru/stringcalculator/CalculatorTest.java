@@ -13,7 +13,18 @@ public class CalculatorTest {
 	public void testEmptyString() {
 		assertEquals(0, Calculator.add(""));
 	}
-
+	@Test
+	public void differentDeliminator() {
+		assertEquals(13, Calculator.add("//;\n10;3"));
+	}
+	@Test
+	public void differentDeliminator2() {
+		assertEquals(19, Calculator.add("//!\n10!9"));
+	}
+	@Test
+	public void differentDeliminatorMoreNumber() {
+		assertEquals(28, Calculator.add("//;\n10;3;15"));
+	}
 	@Test
 	public void tesNewLine() {
 		assertEquals(6, Calculator.add("1\n2,3"));

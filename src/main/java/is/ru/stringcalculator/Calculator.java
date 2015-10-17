@@ -6,10 +6,11 @@ public class Calculator {
 		if (text == ("")) {
 			return 0;
 		}
-		else if (text.contains(",") || text.contains("\n")) {
+		else if (text.startsWith("//") || text.contains(",") || text.contains("\n")) {
 			return total(text);
 		}
-		else; {
+
+		else {
 			try {
 				return toInt(text);
 			} 
@@ -20,7 +21,14 @@ public class Calculator {
 	}
 
 	private static int total(String input){
-		String [] allTheNumbers = input.split(",|\\\n");
+		String deliminator = ",|\\\n";
+		
+		if (input.startsWith("//")) {
+			deliminator = input.substring(2, input.indexOf("\n"));
+			input = input.substring(4);
+		}
+
+		String [] allTheNumbers = input.split(deliminator);
 		int sum = 0;
 		for (int x = 0; x < allTheNumbers.length; x++) {
 			sum += toInt(allTheNumbers[x]);
