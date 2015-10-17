@@ -6,7 +6,7 @@ public class Calculator {
 		if (text == ("")) {
 			return 0;
 		}
-		else if (text.contains(",")) {
+		else if (text.contains(",") || text.contains("\n")) {
 			return total(text);
 		}
 		else; {
@@ -20,7 +20,7 @@ public class Calculator {
 	}
 
 	private static int total(String input){
-		String [] allTheNumbers = input.split(",");
+		String [] allTheNumbers = input.split(",|\\\n");
 		int sum = 0;
 		for (int x = 0; x < allTheNumbers.length; x++) {
 			sum += toInt(allTheNumbers[x]);

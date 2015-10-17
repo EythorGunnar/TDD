@@ -15,6 +15,14 @@ public class CalculatorTest {
 	}
 
 	@Test
+	public void tesNewLine() {
+		assertEquals(6, Calculator.add("1\n2,3"));
+	}
+	@Test
+	public void tesMultipleNewLine() {
+		assertEquals(15, Calculator.add("1\n2,3,4\n5"));
+	}
+	@Test
 	public void testOneNumber() {
 		assertEquals(12, Calculator.add("12"));
 	}
@@ -38,5 +46,4 @@ public class CalculatorTest {
     public void illegalInput(){
     	assertEquals(0, Calculator.add("a"));
     }
-
 }
