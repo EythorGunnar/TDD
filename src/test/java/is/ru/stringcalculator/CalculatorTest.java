@@ -8,7 +8,6 @@ public class CalculatorTest {
 	public static void main(String args[]) {
       org.junit.runner.JUnitCore.main("is.ru.stringcalculator.CalculatorTest");
     }
-
 	@Test
 	public void testEmptyString() {
 		assertEquals(0, Calculator.add(""));
@@ -49,12 +48,10 @@ public class CalculatorTest {
     public void ignoreNumbersLargerThan1000(){
     	assertEquals(219, Calculator.add("10,200,3,3,3,1000000000"));
     }
-/*
     @Test
     public void illegalInput(){
     assertEquals(0, Calculator.add("a"));
     }
-*/
     @Test
     public void negatives(){
     	try {
@@ -73,5 +70,8 @@ public class CalculatorTest {
 			assertEquals("Negatives not allowed: -1,-5", ex.getMessage());
 		}
 	}
-
+	@Test
+	public void largeDeliminator() {
+		assertEquals(6, Calculator.add("//[***]\n1***2***3"));
+	}
 }

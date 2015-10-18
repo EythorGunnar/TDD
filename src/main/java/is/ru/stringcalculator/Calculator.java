@@ -1,5 +1,4 @@
 package is.ru.stringcalculator;
-import java.io.*;
 
 public class Calculator {
 
@@ -20,13 +19,17 @@ public class Calculator {
 		String deliminator = setDeliminator(input);
 
 		//remove delimter definition from string
-		if (input.startsWith("//")) {
-			input = input.substring(4);
-		}
 
+		if (input.startsWith("//")) {
+			if (input.startsWith("//[")) {
+				input.replaceAll(deliminator, "X");
+			}
+			else {
+				input = input.substring(4);
+			}
+		}
 		//Change the string into a string array, based on the deliminator
-		String [] allTheNumbers = input.split(deliminator);
-	
+		String[] allTheNumbers = input.split(deliminator);
 		
 		//Loop through the array and find the sum of all integers
 		int sum = 0;
@@ -34,6 +37,7 @@ public class Calculator {
 		String errorMsg = "Negatives not allowed: ";
 
 		for (int x = 0; x < allTheNumbers.length; x++) {
+			//if there are negative numbers, add them to the errormsg
 			if (toInt(allTheNumbers[x]) < 0){
 				if (includeNegatives) {
 					errorMsg += "," + allTheNumbers[x];
@@ -42,15 +46,17 @@ public class Calculator {
 					includeNegatives = true;
 					errorMsg += allTheNumbers[x];
 				}
+			//check if numbers are over 1000,ignore them if that's the case
 			}
 			else if (toInt(allTheNumbers[x]) > 1000){
 				continue;
 			}
+			//sum
 			else {
 				sum += toInt(allTheNumbers[x]);
 			}
-
 		}
+		//throw exception if negative numbers were found
 		if (includeNegatives){
 			throw new IllegalArgumentException(errorMsg);
 		}
@@ -64,11 +70,18 @@ public class Calculator {
 
 	//Creates a Deliminator, if there is a custom one it replaces the default "," and "\n" deliminators
 	private static String setDeliminator(String input){
-		String deliminator = ",|\\\n";
+		String delimiter = ",|\\\n";
 		if (input.startsWith("//")) {
-			deliminator = input.substring(2, input.indexOf("\n"));
+			if (input.startsWith("//[")) {
+				delimiter = input.substring(input.indexOf("[") + 1,input.indexOf("]"));
+				return delimiter;
+			}
+			else {
+				delimiter = input.substring(2, input.indexOf("\n"));
+				return delimiter;
+			}
 		}
-		return deliminator;
+		return delimiter;
 	}
 }
 
