@@ -55,6 +55,12 @@ public class CalculatorTest {
 
     @Test
     public void illegalInput(){
-    	assertEquals(0, Calculator.add("a"));
+    assertEquals(0, Calculator.add("a"));
     }
+
+	 @Test
+	public void testIndexOutOfBoundsException() {
+    assertEquals("Negatives not allowed: -1,-5", Calculator.add("-1,-5"));
+	}
+
 }
