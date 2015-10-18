@@ -15,7 +15,7 @@ public class CalculatorTest {
 	}
 	@Test
 	public void differentDeliminator() {
-		assertEquals(2558, Calculator.add("//;\n2555;3"));
+		assertEquals(258, Calculator.add("//;\n255;3"));
 	}
 	@Test
 	public void differentDeliminator2() {
@@ -46,8 +46,8 @@ public class CalculatorTest {
     	assertEquals(6, Calculator.add("1,2,3"));
     }
     @Test
-    public void testLargerNumbers(){
-    	assertEquals(1000000219, Calculator.add("10,200,3,3,3,1000000000"));
+    public void ignoreNumbersLargerThan1000(){
+    	assertEquals(219, Calculator.add("10,200,3,3,3,1000000000"));
     }
 /*
     @Test

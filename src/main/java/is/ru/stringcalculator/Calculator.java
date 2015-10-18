@@ -23,7 +23,7 @@ public class Calculator {
 		if (input.startsWith("//")) {
 			input = input.substring(4);
 		}
-		
+
 		//Change the string into a string array, based on the deliminator
 		String [] allTheNumbers = input.split(deliminator);
 	
@@ -43,7 +43,13 @@ public class Calculator {
 					errorMsg += allTheNumbers[x];
 				}
 			}
-			sum += toInt(allTheNumbers[x]);
+			else if (toInt(allTheNumbers[x]) > 1000){
+				continue;
+			}
+			else {
+				sum += toInt(allTheNumbers[x]);
+			}
+
 		}
 		if (includeNegatives){
 			throw new IllegalArgumentException(errorMsg);
